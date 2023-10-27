@@ -10,18 +10,17 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
-  final TextEditingController _controller= TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-  void _clearText(){
-    _controller.clear();
-    setState(() {
 
-    });
+  void _clearText() {
+    _controller.clear();
+    setState(() {});
   }
 
   @override
@@ -104,7 +103,7 @@ class _StartScreenState extends State<StartScreen> {
             Padding(padding: EdgeInsets.only(top: 50)),
             SizedBox(
               child: Text(
-                  'Player name',
+                'Player name',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -115,12 +114,10 @@ class _StartScreenState extends State<StartScreen> {
                 ),
               ),
             ),
-            Padding(padding: EdgeInsets.only(top:25)),
+            Padding(padding: EdgeInsets.only(top: 25)),
             SizedBox(
-
               width: 310,
               height: 50,
-
             ),
             Container(
               width: 310,
@@ -135,14 +132,12 @@ class _StartScreenState extends State<StartScreen> {
                 ),
                 controller: _controller,
                 decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-
-                      borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(25))
-                  ),
-                  hintText: 'Type here',
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(Radius.circular(25))),
+                    hintText: 'Type here',
                     hintStyle: TextStyle(
                       color: Colors.orange,
                       fontFamily: 'Nunito',
@@ -150,16 +145,41 @@ class _StartScreenState extends State<StartScreen> {
                       height: 0,
                     ),
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.clear,color: Colors.orange,),
+                      icon: Icon(
+                        Icons.clear,
+                        color: Colors.orange,
+                      ),
                       onPressed: _clearText,
-                    )
-                ),
-                onChanged: (value){
-                  setState(() {
-                  });
+                    )),
+                onChanged: (value) {
+                  setState(() {});
                 },
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                    child: Text(
+                      'START',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    width: 310,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Color(0xffe76a01), Color(0xfff99440)],
+                        ))),
+              ],
+            )
           ],
         ),
       ),

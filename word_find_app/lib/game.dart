@@ -12,7 +12,6 @@ class _GameState extends State<Game> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
       ),
       body: SafeArea(
         child: Center(

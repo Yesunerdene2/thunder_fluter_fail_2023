@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:word_find_app/home_screen.dart';
 
 import 'components/gradient_letter.dart';
 
@@ -30,7 +31,13 @@ class _StartScreenState extends State<StartScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const HomeScreen())
+            );
+          },
           child: SizedBox(
             width: 32,
             child: Image.asset('assets/images/previous 1.png'),

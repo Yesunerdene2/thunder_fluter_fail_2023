@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:word_find_app/components/gradient_letter.dart';
+import 'package:word_find_app/start_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -53,7 +54,13 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   height: 0),
             ),
-            ElevatedButton(onPressed: (){},
+            ElevatedButton(onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => StartScreen())
+              );
+            },
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   backgroundColor: Colors.transparent,

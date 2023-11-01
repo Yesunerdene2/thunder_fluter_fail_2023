@@ -6,5 +6,5 @@ import 'home_screen.dart';
 
 void main() {
   runApp(MaterialApp(
-      home: HomeScreen()));
+      home: StartScreen()));
 }

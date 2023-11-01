@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:word_find_app/home_screen.dart';
 
 import 'components/gradient_letter.dart';
+import 'game.dart';
+import 'models/User.dart';
+
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -11,16 +14,18 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _namecontroller = TextEditingController();
+
+  String? _name;
 
   @override
   void dispose() {
-    _controller.dispose();
+    _namecontroller.dispose();
     super.dispose();
   }
 
   void _clearText() {
-    _controller.clear();
+    _namecontroller.clear();
     setState(() {});
   }
 
@@ -32,11 +37,8 @@ class _StartScreenState extends State<StartScreen> {
         elevation: 0,
         leading: TextButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const HomeScreen())
-            );
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
           },
           child: SizedBox(
             width: 32,
@@ -95,99 +97,124 @@ class _StartScreenState extends State<StartScreen> {
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/back2.png'), fit: BoxFit.cover),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-            ),
-            Padding(padding: EdgeInsets.only(top: 40)),
-            Image.asset('assets/images/icodeGuyHead.png'),
-            Padding(padding: EdgeInsets.only(top: 50)),
-            SizedBox(
-              child: Text(
-                'Player name',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Ribeye',
-                  color: Color(0xFFE76A01),
-                  fontWeight: FontWeight.w400,
-                  height: 0,
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/back2.png'),
+                fit: BoxFit.cover),
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              Padding(padding: EdgeInsets.only(top: 40)),
+              Image.asset('assets/images/icodeGuyHead.png'),
+              Padding(padding: EdgeInsets.only(top: 50)),
+              SizedBox(
+                child: Text(
+                  'Player name',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Ribeye',
+                    color: Color(0xFFE76A01),
+                    fontWeight: FontWeight.w400,
+                    height: 0,
+                  ),
                 ),
               ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 25)),
-            SizedBox(
-              width: 310,
-              height: 50,
-            ),
-            Container(
-              width: 310,
-              height: 50,
-              child: TextField(
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w600,
-                  height: 0,
-                ),
-                controller: _controller,
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.all(Radius.circular(25))),
-                    hintText: 'Type here',
-                    hintStyle: TextStyle(
-                      color: Colors.orange,
-                      fontFamily: 'Nunito',
-                      fontWeight: FontWeight.w600,
-                      height: 0,
-                    ),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.clear,
+              Padding(padding: EdgeInsets.only(top: 25)),
+              SizedBox(
+                width: 310,
+                height: 50,
+              ),
+              Container(
+                width: 310,
+                height: 50,
+                child: TextField(
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.w600,
+                    height: 0,
+                  ),
+                  controller: _namecontroller,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                      hintText: 'Type here',
+                      hintStyle: TextStyle(
                         color: Colors.orange,
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
                       ),
-                      onPressed: _clearText,
-                    )),
-                onChanged: (value) {
-                  setState(() {});
-                },
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.clear,
+                          color: Colors.orange,
+                        ),
+                        onPressed: _clearText,
+                      )),
+                  onChanged: (value) {
+                    setState(() {
+                     _name = value;
+                    });
+                  },
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                    child: Text(
-                      'START',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
+              if (_name != null && _name!.isNotEmpty)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                          elevation: 0,
+                        ),
+                        onPressed: () {
+                          final user = User (name:_namecontroller.text, score: 0);
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) => Game(user: user),
+                          ),
+                          );
+                          },
+                        child: Text(
+                          'START',
+                          style: TextStyle(
+                            color: Colors.white,
+
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
-                    ),
-                    width: 310,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xffe76a01), Color(0xfff99440)],
-                        ))),
-              ],
-            )
-          ],
+                      width: 310,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [Color(0xffe76a01), Color(0xfff99440)],
+                          ),
+                      ),
+
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

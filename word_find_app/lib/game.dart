@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:word_find_app/components/gradient_letter.dart';
 
-import 'models/User.dart';
+import 'models/user.dart';
 
 class Game extends StatefulWidget {
   const Game({super.key, required this.user});
@@ -21,7 +22,7 @@ class _GameState extends State<Game> {
           child: Row(
             children: [
               InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: SizedBox(
@@ -34,24 +35,27 @@ class _GameState extends State<Game> {
           ),
         ),
         actions: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    child: Image.asset('assets/Image/trophy1.png'),
-                    width: 25,
-                    height: 25,
-                  ),
-                ],
+          SizedBox(
+            child: Image.asset('assets/images/trophy1.png'),
+            width: 24,
+            height: 24,
+          ),
+          Center(
+            child: SizedBox(
+              width: 25,
+              height: 33,
+              child: Text(
+                "0",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.orange,
+                ),
               ),
-            ],
+            ),
           ),
         ],
       ),
-      
       body: SafeArea(
         child: Center(
           child: Container(
@@ -61,23 +65,124 @@ class _GameState extends State<Game> {
                     image: AssetImage('assets/images/back2.png'),
                     fit: BoxFit.cover)),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 25,
+                      height: 25,
+                      child: Image.asset('assets/images/orange.png'),
+                    ),
+                    SizedBox(
+                      width: 25,
+                      height: 25,
+                      child: Image.asset('assets/images/orange.png'),
+                    ),
+                    SizedBox(
+                      width: 25,
+                      height: 25,
+                      child: Image.asset('assets/images/orange.png'),
+                    ),
+                    SizedBox(
+                      width: 25,
+                      height: 25,
+                      child: Image.asset('assets/images/orange.png'),
+                    ),
+                    SizedBox(
+                      width: 25,
+                      height: 25,
+                      child: Image.asset('assets/images/orange.png'),
+                    ),
+                  ],
                 ),
-                Padding(padding: EdgeInsets.only(top:55)),
-                Image.asset('assets/images/IMG.png'),
-                Padding(padding: EdgeInsets.only(top: 55)),
-                Container(
-                  child: Text(
-                    '',
-                        style: TextStyle(
-                          color: Colors.orange,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w400,
-                        ),
+                Padding(padding: EdgeInsets.only(top: 31)),
+                Center(
+                  child: SizedBox(
+                    // width: 68,
+                    // height: 33,
+                    child: Text(
+                      "0/10",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.orange,
+                      ),
+                    ),
                   ),
+                ),
+                Row(
+                  children: [
+                    Padding(padding: EdgeInsets.only(left: 16)),
+                    SizedBox(
+                      width: 32,
+                      height: 32,
+                      child: Image.asset('assets/images/previousGray.png'),
+                    ),
+                    Padding(padding: EdgeInsets.only(right: 7)),
+                    Image.asset('assets/images/IMG.png'),
+                    Row(
+                      children: [
+                        Padding(padding: EdgeInsets.only(left: 16)),
+                        SizedBox(
+                          width: 32,
+                          height: 32,
+                          child: Image.asset('assets/images/next.png'),
+                        ),
+                      ],
+                    ),
+                    Padding(padding: EdgeInsets.only(right: 7)),
+                  ],
+                ),
+                Padding(padding: EdgeInsets.only(top: 25)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
 
+                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    Padding(padding: EdgeInsets.only(right: 7)),
+                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    Padding(padding: EdgeInsets.only(right: 7)),
+                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    Padding(padding: EdgeInsets.only(right: 7)),
+                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    Padding(padding: EdgeInsets.only(right: 7)),
+                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    Padding(padding: EdgeInsets.only(right: 7)),
+                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    Padding(padding: EdgeInsets.only(right: 7)),
+
+                    // Container(
+                    //   width: 43,
+                    //   height: 43,
+                    //   decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.circular(16),
+                    //       color: Color(0xFFFF9002)),
+                    //   child: Align(
+                    //     alignment: Alignment.center,
+                    //     child: FractionallySizedBox(
+                    //       widthFactor: 2 / 3,
+                    //       heightFactor: 2 / 3,
+                    //       child: Container(
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(10),
+                    //             gradient: LinearGradient(
+                    //                 colors: [
+                    //                   Color.fromARGB(25, 144, 2, 0),
+                    //                   Color(0xFFE480000)
+                    //                 ],
+                    //                 begin: Alignment.topLeft,
+                    //                 end: Alignment.bottomRight,
+                    //                 stops: [-0.025, 1.16875],
+                    //                 transform: GradientRotation(180))),
+                    //
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
                 ),
               ],
             ),

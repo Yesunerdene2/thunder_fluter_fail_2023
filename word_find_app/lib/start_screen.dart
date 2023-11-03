@@ -3,7 +3,7 @@ import 'package:word_find_app/home_screen.dart';
 
 import 'components/gradient_letter.dart';
 import 'game.dart';
-import 'models/User.dart';
+import 'models/user.dart';
 
 
 class StartScreen extends StatefulWidget {

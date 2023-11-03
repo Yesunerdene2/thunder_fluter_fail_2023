@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:word_find_app/components/gradient_letter.dart';
+import 'package:word_find_app/game.dart';
 import 'package:word_find_app/start_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -58,7 +59,7 @@ class HomeScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => StartScreen())
+                    builder: (context) => StartScreen()),
               );
             },
                 style: ElevatedButton.styleFrom(

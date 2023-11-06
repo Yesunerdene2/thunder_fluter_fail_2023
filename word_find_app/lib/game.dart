@@ -13,6 +13,7 @@ class Game extends StatefulWidget {
 class _GameState extends State<Game> {
   @override
   Widget build(BuildContext context) {
+    var settings;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -140,20 +141,48 @@ class _GameState extends State<Game> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
-                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    GradientLetter(
+                        letter: '',
+                        width: 43,
+                        height: 43,
+                        fontSize: 0,
+                        borderRadius: 11),
                     Padding(padding: EdgeInsets.only(right: 7)),
-                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    GradientLetter(
+                        letter: '',
+                        width: 43,
+                        height: 43,
+                        fontSize: 0,
+                        borderRadius: 11),
                     Padding(padding: EdgeInsets.only(right: 7)),
-                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    GradientLetter(
+                        letter: '',
+                        width: 43,
+                        height: 43,
+                        fontSize: 0,
+                        borderRadius: 11),
                     Padding(padding: EdgeInsets.only(right: 7)),
-                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    GradientLetter(
+                        letter: '',
+                        width: 43,
+                        height: 43,
+                        fontSize: 0,
+                        borderRadius: 11),
                     Padding(padding: EdgeInsets.only(right: 7)),
-                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    GradientLetter(
+                        letter: '',
+                        width: 43,
+                        height: 43,
+                        fontSize: 0,
+                        borderRadius: 11),
                     Padding(padding: EdgeInsets.only(right: 7)),
-                    GradientLetter(letter: '', width: 43, height: 43, fontSize: 0, borderRadius: 11),
+                    GradientLetter(
+                        letter: '',
+                        width: 43,
+                        height: 43,
+                        fontSize: 0,
+                        borderRadius: 11),
                     Padding(padding: EdgeInsets.only(right: 7)),
-
                     // Container(
                     //   width: 43,
                     //   height: 43,
@@ -183,6 +212,46 @@ class _GameState extends State<Game> {
                     //   ),
                     // ),
                   ],
+                ),
+                Padding(padding: EdgeInsets.only(top: 11.5)),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: Image.asset('assets/images/hint.png'),
+                    ),
+                    Text(
+                      'Hint',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.orange,
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(padding: EdgeInsets.only(top: 57)),
+                Container(
+                  width: 375,
+                  height: 220,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white,
+                  ),
+                  child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: settings.width,
+                      ),
+                      itemCount: settings.width* settings.height,
+                    itemBuilder: (BuildContext context, int index) {
+                        final int row = index ~/ settings.width;
+                        final num col = index % settings.width;
+
+                    },
+                  ),
                 ),
               ],
             ),

@@ -120,7 +120,9 @@ class _GameState extends State<Game> {
                     SizedBox(
                       width: 32,
                       height: 32,
-                      child: Image.asset('assets/images/previousGray.png'),
+                      child: InkWell (onTap: (){Navigator.pop(context);},
+                        child: Image.asset('assets/images/previousGray.png'),
+                      ) ,
                     ),
                     Padding(padding: EdgeInsets.only(right: 7)),
                     Image.asset('assets/images/IMG.png'),
@@ -162,6 +164,13 @@ class _GameState extends State<Game> {
                         fontSize: 0,
                         borderRadius: 11),
                     Padding(padding: EdgeInsets.only(right: 7)),
+                    // GradientLetter(
+                    //     letter: '',
+                    //     width: 43,
+                    //     height: 43,
+                    //     fontSize: 0,
+                    //     borderRadius: 11),
+                    // Padding(padding: EdgeInsets.only(right: 7)),
                     GradientLetter(
                         letter: '',
                         width: 43,
@@ -176,41 +185,33 @@ class _GameState extends State<Game> {
                         fontSize: 0,
                         borderRadius: 11),
                     Padding(padding: EdgeInsets.only(right: 7)),
-                    GradientLetter(
-                        letter: '',
-                        width: 43,
-                        height: 43,
-                        fontSize: 0,
-                        borderRadius: 11),
-                    Padding(padding: EdgeInsets.only(right: 7)),
-                    // Container(
-                    //   width: 43,
-                    //   height: 43,
-                    //   decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(16),
-                    //       color: Color(0xFFFF9002)),
-                    //   child: Align(
-                    //     alignment: Alignment.center,
-                    //     child: FractionallySizedBox(
-                    //       widthFactor: 2 / 3,
-                    //       heightFactor: 2 / 3,
-                    //       child: Container(
-                    //         decoration: BoxDecoration(
-                    //             borderRadius: BorderRadius.circular(10),
-                    //             gradient: LinearGradient(
-                    //                 colors: [
-                    //                   Color.fromARGB(25, 144, 2, 0),
-                    //                   Color(0xFFE480000)
-                    //                 ],
-                    //                 begin: Alignment.topLeft,
-                    //                 end: Alignment.bottomRight,
-                    //                 stops: [-0.025, 1.16875],
-                    //                 transform: GradientRotation(180))),
-                    //
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    Container(
+                      width: 43,
+                      height: 43,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: Color(0xFFFF9002)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: FractionallySizedBox(
+                          widthFactor: 2 / 3,
+                          heightFactor: 2 / 3,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Color.fromARGB(25, 144, 2, 0),
+                                      Color(0xFFE480000)
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    stops: [-0.025, 1.16875],
+                                    transform: GradientRotation(180))),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 Padding(padding: EdgeInsets.only(top: 11.5)),
@@ -241,18 +242,17 @@ class _GameState extends State<Game> {
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.white,
                   ),
-                  child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: settings.width,
-                      ),
-                      itemCount: settings.width* settings.height,
-                    itemBuilder: (BuildContext context, int index) {
-                        final int row = index ~/ settings.width;
-                        final num col = index % settings.width;
-
-                    },
+                  // child: GridView.builder(
+                  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  //       crossAxisCount: settings.width,
+                  //     ),
+                  //     itemCount: settings.width* settings.height,
+                  //   itemBuilder: (BuildContext context, int index) {
+                  //       final int row = index ~/ settings.width;
+                  //       final num col = index % settings.width;
+                    // },
                   ),
-                ),
+                // ),
               ],
             ),
           ),

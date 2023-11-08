@@ -134,6 +134,7 @@ class _StartScreenState extends State<StartScreen> {
                 width: 310,
                 height: 50,
                 child: TextField(
+
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -148,6 +149,7 @@ class _StartScreenState extends State<StartScreen> {
                       border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(Radius.circular(25))),
+
                       hintText: 'Type here',
                       hintStyle: TextStyle(
                         color: Colors.orange,
@@ -209,7 +211,6 @@ class _StartScreenState extends State<StartScreen> {
                             colors: [Color(0xffe76a01), Color(0xfff99440)],
                           ),
                       ),
-
                   ),
                 ],
               ),

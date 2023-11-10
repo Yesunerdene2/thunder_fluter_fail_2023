@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:word_find_app/components/gradient_letter.dart';
-
+import 'package:word_search_safety/word_search_safety.dart';
 import 'models/user.dart';
 
 class Game extends StatefulWidget {
@@ -9,8 +9,79 @@ class Game extends StatefulWidget {
   @override
   State<Game> createState() => _GameState();
 }
-
 class _GameState extends State<Game> {
+  late List<String> hiddenWord = [];
+  final WSSettings settings = WSSettings(
+    width: 7,
+    height: 2,
+    orientations: List.from([
+      WSOrientation.horizontal,
+    ]),
+  );
+  final WordSearchSafety wordSearch = WordSearchSafety();
+  WSNewPuzzle? newPuzzle;
+  WSSolved? solved;
+  List<bool> revealeHiddenWord = [];
+  late GameState gameState;
+  int currentIndex = 0;
+  bool isWon = false;
+  int howManyGuessed = 0;
+
+
+  @override
+  void initState() {
+    super.initState();
+    final WordListRepository wordListRepository = WordListRepository();
+    gameState = GameState(
+        currentModel: wordListRepository.search_word[currentIndex],
+        currentModelIndex: currentIndex,
+        howManyGuessed: howManyGuessed,
+        isWon: isWon);
+    hiddenWord = gameState.currentModel.hiddenWord;
+    revealeHiddenWord = List.filled(hiddenWord.length, false);
+    newPuzzle = wordSearch.newPuzzle(hiddenWord, settings);
+    if (newPuzzle!.errors!.isEmpty) {
+      solved = wordSearch.solvePuzzle(
+        newPuzzle!.puzzle!,
+        gameState.currentModel.hiddenWord,
+      );
+    }
+  }
+
+  void onLetterSelected(String letter) {
+    setState(() {
+      uptadeHiddenWordGrid(letter);
+    });
+  }
+
+  void uptadeHiddenWordGrid(letter) {
+    print('updteHiddenWordGrid: $letter');
+    for (int i = 0; i < hiddenWord.length; i++) {
+      if (hiddenWord[i] == letter) {
+        revealeHiddenWord[i] = true;
+      }
+    }
+    if (revealeHiddenWord.every((element) => element == true)) {
+      print('You won');
+      isWon = true;
+      if (isWon) {
+        if (WordListRepository().search_word.length - 1 ==
+            gameState.currentModelIndex) {
+          print('You won the game!');
+          return;
+        }
+        gameState.currentModelIndex++;
+        gameState.currentModel =
+        WordListRepository().search_word[gameState.currentModelIndex];
+        hiddenWord = gameState.currentModel.hiddenWord;
+        revealeHiddenWord = List.filled(hiddenWord.length, false);
+        isWon = false;
+        newPuzzle = wordSearch.newPuzzle(hiddenWord, settings);
+      }
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var settings;
@@ -120,9 +191,12 @@ class _GameState extends State<Game> {
                     SizedBox(
                       width: 32,
                       height: 32,
-                      child: InkWell (onTap: (){Navigator.pop(context);},
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                         child: Image.asset('assets/images/previousGray.png'),
-                      ) ,
+                      ),
                     ),
                     Padding(padding: EdgeInsets.only(right: 7)),
                     Image.asset('assets/images/IMG.png'),
@@ -139,7 +213,7 @@ class _GameState extends State<Game> {
                     Padding(padding: EdgeInsets.only(right: 7)),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 25)),
+                Padding(padding: EdgeInsets.only(top: 24)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -236,23 +310,51 @@ class _GameState extends State<Game> {
                 ),
                 Padding(padding: EdgeInsets.only(top: 57)),
                 Container(
-                  width: 375,
-                  height: 220,
+                  width: 400,
+                  height: 222,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.white,
                   ),
-                  // child: GridView.builder(
-                  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  //       crossAxisCount: settings.width,
-                  //     ),
-                  //     itemCount: settings.width* settings.height,
-                  //   itemBuilder: (BuildContext context, int index) {
-                  //       final int row = index ~/ settings.width;
-                  //       final num col = index % settings.width;
-                    // },
-                  ),
-                // ),
+                ),
+                Column(
+                  children: [
+                    Container(
+                      height: 300,
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: settings.width,
+                        ),
+                        itemCount: settings.width * settings.height,
+                        itemBuilder: (BuildContext context, int index) {
+                          final int row = index ~/ settings.width;
+                          final num col = index % settings.width;
+                          final cell = newPuzzle!.puzzle![row][col];
+                          return GestureDetector(
+                            onTap: () {
+                              print('tapped cell $cell');
+                              onLetterSelected(cell);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                cell,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+
+
+                  ],
+                ),
               ],
             ),
           ),
@@ -260,4 +362,9 @@ class _GameState extends State<Game> {
       ),
     );
   }
+
+  void onLetterSelected(String letter) {
+    setState(() {});
+  }
 }
+

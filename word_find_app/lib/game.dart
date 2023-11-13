@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:word_find_app/components/gradient_letter.dart';
+import 'package:word_find_app/models/word_list_repository.dart';
 import 'package:word_search_safety/word_search_safety.dart';
+import 'models/game_state.dart';
 import 'models/user.dart';
 
 class Game extends StatefulWidget {
@@ -84,7 +86,7 @@ class _GameState extends State<Game> {
 
   @override
   Widget build(BuildContext context) {
-    var settings;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -328,7 +330,7 @@ class _GameState extends State<Game> {
                         itemCount: settings.width * settings.height,
                         itemBuilder: (BuildContext context, int index) {
                           final int row = index ~/ settings.width;
-                          final num col = index % settings.width;
+                          final int col = index % settings.width;
                           final cell = newPuzzle!.puzzle![row][col];
                           return GestureDetector(
                             onTap: () {
@@ -361,10 +363,6 @@ class _GameState extends State<Game> {
         ),
       ),
     );
-  }
-
-  void onLetterSelected(String letter) {
-    setState(() {});
   }
 }
 

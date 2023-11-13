@@ -36,10 +36,10 @@ class _WordSearchScreenState extends State<WordSearchScreen> {
   WSNewPuzzle? newPuzzle;
   WSSolved? solved;
   List<bool> revealeHiddenWord = [];
-late GameState gameState;
-int currentIndex = 0;
-bool isWon = false;
-int howManyGuessed = 0;
+  late GameState gameState;
+  int currentIndex = 0;
+  bool isWon = false;
+  int howManyGuessed = 0;
 
   @override
   void initState() {
@@ -48,13 +48,16 @@ int howManyGuessed = 0;
     gameState = GameState(
         currentModel: wordListRepository.search_word[currentIndex],
         currentModelIndex: currentIndex,
-        howManyGuessed: howManyGuessed, isWon: isWon);
+        howManyGuessed: howManyGuessed,
+        isWon: isWon);
     hiddenWord = gameState.currentModel.hiddenWord;
     revealeHiddenWord = List.filled(hiddenWord.length, false);
     newPuzzle = wordSearch.newPuzzle(hiddenWord, settings);
     if (newPuzzle!.errors!.isEmpty) {
       solved = wordSearch.solvePuzzle(
-      newPuzzle!.puzzle!, gameState.currentModel.hiddenWord,);
+        newPuzzle!.puzzle!,
+        gameState.currentModel.hiddenWord,
+      );
     }
   }
 
@@ -71,26 +74,25 @@ int howManyGuessed = 0;
         revealeHiddenWord[i] = true;
       }
     }
-    if (revealeHiddenWord.every((element) => element == true)){
+    if (revealeHiddenWord.every((element) => element == true)) {
       print('You won');
       isWon = true;
-      if (isWon){
-        if(WordListRepository().search_word.length -1 ==
-            gameState.currentModelIndex){
+      if (isWon) {
+        if (WordListRepository().search_word.length - 1 ==
+            gameState.currentModelIndex) {
           print('You won the game!');
           return;
         }
         gameState.currentModelIndex++;
         gameState.currentModel =
-        WordListRepository().search_word[gameState.currentModelIndex];
+            WordListRepository().search_word[gameState.currentModelIndex];
         hiddenWord = gameState.currentModel.hiddenWord;
-        revealeHiddenWord =List.filled(hiddenWord.length, false);
+        revealeHiddenWord = List.filled(hiddenWord.length, false);
         isWon = false;
         newPuzzle = wordSearch.newPuzzle(hiddenWord, settings);
       }
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -132,10 +134,10 @@ int howManyGuessed = 0;
                       );
                     })),
             Container(
-  width: 200,
-  height: 200,
-  child: Image.asset(gameState.currentModel.imageURl),
-  ),
+              width: 200,
+              height: 200,
+              child: Image.asset(gameState.currentModel.imageURl),
+            ),
             SizedBox(height: 150),
             Text('Hidden Word Grid:'),
             Row(
@@ -156,4 +158,3 @@ int howManyGuessed = 0;
     );
   }
 }
-

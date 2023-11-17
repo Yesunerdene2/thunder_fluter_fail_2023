@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "52017095155",
+    "project_id": "lesson-thunder-go",
+    "storage_bucket": "lesson-thunder-go.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52017095155:android:7719ae8f7a6f1374cbb286",
+        "android_client_info": {
+          "package_name": "com.example.lesson_day_27_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQWkA18UkARQWgXACYReV6D7IUGbBQ5AQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

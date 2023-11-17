@@ -160,7 +160,7 @@ class IcodeGram extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

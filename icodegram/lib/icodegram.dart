@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icodegram/gramhome.dart';
 
 class IcodeGram extends StatelessWidget {
   const IcodeGram({super.key});
@@ -152,11 +153,20 @@ class IcodeGram extends StatelessWidget {
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(left: 10)),
-                Text(
-                  "Бүртгүүлэх",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.orange,
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => GramHome()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                  ),
+                  child: Text(
+                    "Бүртгүүлэх",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.orange,
+                    ),
                   ),
                 ),
               ],

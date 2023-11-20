@@ -38,7 +38,9 @@ class GradientLetter extends StatelessWidget {
                   style: TextStyle(
                       fontStyle: FontStyle.italic,
                       color: Colors.white,
-                      fontSize: fontSize)),
+                      fontSize: fontSize ,
+                  fontFamily: 'Ribeye',
+                  )),
             ),
           ),
         ),

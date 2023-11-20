@@ -10,6 +10,5 @@ class GameState {
   {required this.currentModel,
   required this.currentModelIndex,
   required this.howManyGuessed,
-  required this.isWon}  );
-
+  required this.isWon});
 }

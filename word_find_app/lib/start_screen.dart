@@ -167,6 +167,7 @@ class _StartScreenState extends State<StartScreen> {
                   onChanged: (value) {
                     setState(() {
                      _name = value;
+
                     });
                   },
                 ),

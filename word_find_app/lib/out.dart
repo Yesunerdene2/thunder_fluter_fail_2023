@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '';
+import 'home_screen.dart';
 
-class OutWidget extends StatelessWidget {
-  void _showAlertDialog(BuildContext context) {
-    showDialog(
+Future<void> exitDialog(BuildContext context){
+  return showDialog<void>(
         context: context,
         builder: (BuildContext context) {
           return Column(
@@ -19,6 +19,10 @@ class OutWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          SizedBox(
+                            width: 30,
+                            height: 30,
+                          ),
                           Image.asset('assets/images/orange.png'),
                           Padding(padding: EdgeInsets.only(left: 80)),
                           SizedBox(
@@ -40,7 +44,7 @@ class OutWidget extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'Ribeye',
                         ),
                         textAlign: TextAlign.center,
@@ -67,10 +71,11 @@ class OutWidget extends StatelessWidget {
                               ),
                               child: IconButton(
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  Navigator.push(
+                                      context, MaterialPageRoute(builder: (context)=>HomeScreen()));
                                 },
                                 icon: Text(
-                                  'No',
+                                  'YES',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
@@ -78,6 +83,27 @@ class OutWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            SizedBox(width: 16),
+                            Container(
+                              width: 134,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                color: Colors.orange,
+                              ),
+                              child: IconButton(
+                                onPressed: (){
+                                  Navigator.pop(context);
+                                },
+                                icon: Text(
+                                  'NO',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ],
@@ -90,23 +116,3 @@ class OutWidget extends StatelessWidget {
         });
   }
 
-  const OutWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: 50,
-          height: 50,
-          child: IconButton(
-            onPressed: () {
-              _showAlertDialog(context);
-            },
-            icon: Image.asset('assets.images/exit.png'),
-          ),
-        ),
-      ),
-    );
-  }
-}

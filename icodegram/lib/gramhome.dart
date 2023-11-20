@@ -6,6 +6,8 @@ class GramHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _numberController = TextEditingController();
+    final _peopleController = TextEditingController();
+    final _passController = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -44,6 +46,52 @@ class GramHome extends StatelessWidget {
                   ),
                   onPressed: () {
                     _numberController.clear();
+                  },
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(left: 15)),
+            Padding(padding: EdgeInsets.only(top: 16)),
+            TextField(
+              style: TextStyle(color: Colors.white),
+              controller: _peopleController,
+              decoration: InputDecoration(
+                hintText: "Хэрэглэгчийн нэр",
+                hintStyle: TextStyle(color: Colors.white, fontSize: 14),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      width: 3, color: Color(0xFFA0A0A0)), //<-- SEE HERE
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.clear,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    _peopleController.clear();
+                  },
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(left: 15)),
+            Padding(padding: EdgeInsets.only(top: 16)),
+            TextField(
+              style: TextStyle(color: Colors.white),
+              controller: _passController,
+              decoration: InputDecoration(
+                hintText: "Нууц үг",
+                hintStyle: TextStyle(color: Colors.white, fontSize: 14),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      width: 3, color: Color(0xFFA0A0A0)), //<-- SEE HERE
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.clear,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    _passController.clear();
                   },
                 ),
               ),

@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontFamily: 'Lobster',
                 fontSize: 25,
                 fontWeight: FontWeight.w400,
-                color: Colors.white,
+                color: Colors.orange,
               ),
             ),
           ],

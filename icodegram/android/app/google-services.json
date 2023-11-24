@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "149082518541",
+    "project_id": "icodegram-yesun",
+    "storage_bucket": "icodegram-yesun.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149082518541:android:88eda612a9007a780cd144",
+        "android_client_info": {
+          "package_name": "com.example.icodegram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCzFouIcHhtcM3mFyAvs2U4Dw8QXXbT-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

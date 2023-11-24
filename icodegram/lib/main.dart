@@ -1,11 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:icodegram/firebase_options.dart';
 import 'package:icodegram/gramhome.dart';
 import 'package:icodegram/screen_layout.dart';
 
 import 'icodegram.dart';
 
-void main() {
-  runApp(MaterialApp(
-      home: ScreenLayout()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(MaterialApp(home: IcodeGram()));
 }
-

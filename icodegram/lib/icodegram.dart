@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icodegram/gramhome.dart';
+import 'package:icodegram/home_screeen.dart';
+import 'package:icodegram/screen_layout.dart';
+import 'package:icodegram/utils/auth_methods.dart';
 
 class IcodeGram extends StatelessWidget {
   const IcodeGram({super.key});
@@ -8,6 +11,7 @@ class IcodeGram extends StatelessWidget {
   Widget build(BuildContext context) {
     final _nameController = TextEditingController();
     final _passController = TextEditingController();
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -83,7 +87,15 @@ class IcodeGram extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  String result = await AuthMethods().loginUser(
+                      email: _nameController.text,
+                      password: _passController.text);
+                  if (result == 'success') {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ScreenLayout()));
+                  }
+                },
                 child: Text(
                   "Нэвтрэх",
                   style: TextStyle(

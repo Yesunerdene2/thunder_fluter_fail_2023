@@ -19,14 +19,15 @@ class User {
       required this.following});
 
   static User fromSnap(DocumentSnapshot snap) {
+    print('snap ${snap.metadata}');
     var snapshot = snap.data() as Map<String, dynamic>;
 
     return User(
       username: snapshot["username"],
       uid: snapshot["uid"],
-      photoUrl: snapshot["photoUrl"],
+      photoUrl: 'photo',
       email: snapshot["email"],
-      bio: snapshot["bio"],
+      bio: 'bio',
       followers: snapshot["followers"],
       following: snapshot["following"],
     );

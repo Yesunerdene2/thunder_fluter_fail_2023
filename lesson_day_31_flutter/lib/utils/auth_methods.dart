@@ -6,11 +6,14 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:lesson_day_31_flutter/models/user.dart' as model;
 import 'package:lesson_day_31_flutter/storage_methods.dart';
 
-
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
 
   Future<String> signUpUser({
     required String email,
@@ -76,9 +79,11 @@ class AuthMethods {
 
   Future<model.User> getUserDetails() async {
     User currentUser = _auth.currentUser!;
+    print(currentUser);
 
     DocumentSnapshot documentSnapshot =
         await _fireStore.collection('users').doc(currentUser.uid).get();
+    print('document ${documentSnapshot}');
     return model.User.fromSnap(documentSnapshot);
   }
 }

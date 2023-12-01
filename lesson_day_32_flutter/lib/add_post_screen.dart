@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lesson_day_32_flutter/firestore_methods.dart';
 import 'package:lesson_day_32_flutter/providers/user_provider.dart';
 import 'package:lesson_day_32_flutter/utils.dart';
 import 'package:provider/provider.dart';
@@ -64,6 +65,22 @@ class _AddPostScreenState extends State<AddPostScreen> {
     super.dispose();
   }
 
+
+  void postImage(String uid, String username, String porfImage) async {
+    try {
+      String result = await FireStoreMethods().uploadPost(
+          _descriptionConttoller.text, _image!, uid, username, porfImage);
+      if (result == 'success') {
+
+        SnackBar snackBar = SnackBar(content: Text('Post uploaded'));
+        ScaffoldMessenger.of(context).showSnackBar((snackBar));
+      } else {}
+    } catch (e) {
+      SnackBar snackBar = SnackBar(content: Text(e.toString()));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final User user = Provider.of<UserProvider>(context).getUser;
@@ -89,7 +106,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ),
               actions: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    postImage(user.uid, user.name, user.photoUrl);
+                  },
                   child: const Text(
                     'Post',
                     style: TextStyle(

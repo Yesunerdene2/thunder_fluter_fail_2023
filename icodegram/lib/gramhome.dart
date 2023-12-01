@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:icodegram/home_screeen.dart';
+import 'package:icodegram/icodegram.dart';
 
 class GramHome extends StatelessWidget {
   const GramHome({super.key});
 
   @override
+
   Widget build(BuildContext context) {
     final _numberController = TextEditingController();
     final _peopleController = TextEditingController();
@@ -24,7 +27,7 @@ class GramHome extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Lobster',
                 fontSize: 35,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
@@ -120,6 +123,7 @@ class GramHome extends StatelessWidget {
                 ),
               ),
             ),
+
             Padding(padding: EdgeInsets.only(top: 48)),
             Padding(padding: EdgeInsets.only(left: 16)),
             Padding(padding: EdgeInsets.only(right: 16)),
@@ -130,7 +134,9 @@ class GramHome extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => IcodeGram()));
+                },
                 child: Text(
                   "Бүртгүүлэх",
                   style: TextStyle(

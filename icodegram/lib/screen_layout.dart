@@ -37,8 +37,6 @@ class _ScreenLayoutState extends State<ScreenLayout> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +59,7 @@ class _ScreenLayoutState extends State<ScreenLayout> {
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: _page == 0 ? Colors.white : Colors.yellow,
+                color: _page == 0 ? Colors.white : Colors.yellow[900],
               ),
               backgroundColor: Colors.black,
               label: ''),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lesson_day_34_flutter/layout/navigation-bar.dart';
-import 'package:lesson_day_34_flutter/sign_up.dart';
+import 'package:lesson_day_35_flutter/layout/navigation-bar.dart';
+import 'package:lesson_day_35_flutter/sign_up.dart';
 
 import 'auth_methods.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:lesson_day_34_flutter/models/post.dart';
-import 'package:lesson_day_34_flutter/storage_methods.dart';
+import 'package:lesson_day_35_flutter/models/post.dart';
+import 'package:lesson_day_35_flutter/storage_methods.dart';
 import 'package:uuid/uuid.dart';
 
 class FirestoreMethods {

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lesson_day_34_flutter/widgets/post_card.dart';
+import 'package:lesson_day_35_flutter/widgets/post_card.dart';
 
 class PostFeedScreen extends StatefulWidget {
   const PostFeedScreen({super.key});

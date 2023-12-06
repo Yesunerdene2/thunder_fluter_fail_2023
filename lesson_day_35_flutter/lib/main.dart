@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:lesson_day_34_flutter/firebase_options.dart';
-import 'package:lesson_day_34_flutter/home_screen.dart';
-import 'package:lesson_day_34_flutter/providers/user_provider.dart';
+import 'package:lesson_day_35_flutter/firebase_options.dart';
+import 'package:lesson_day_35_flutter/home_screen.dart';
+import 'package:lesson_day_35_flutter/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'layout/navigation-bar.dart';

@@ -2,9 +2,9 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lesson_day_34_flutter/firestore_methods.dart';
-import 'package:lesson_day_34_flutter/providers/user_provider.dart';
-import 'package:lesson_day_34_flutter/utils.dart';
+import 'package:lesson_day_35_flutter/firestore_methods.dart';
+import 'package:lesson_day_35_flutter/providers/user_provider.dart';
+import 'package:lesson_day_35_flutter/utils.dart';
 import 'package:provider/provider.dart';
 import 'models/user.dart';
 

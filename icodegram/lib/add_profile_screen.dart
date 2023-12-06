@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,7 +14,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Row(
+        child: Column(
           children: [
             Text(
               "iCodegram",
@@ -24,20 +25,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: Colors.white,
               ),
             ),
-            Padding(padding: (EdgeInsets.only(top:40)),)
-            Center(
-              child: SizedBox(
-                child: Text(
-                  "Профайл засах",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
-                  ),
+            SizedBox(
+              height: 13,
+            ),
+            Row(
+              children: [
+                SvgPicture.asset(
+                  'assets/images/Photo.svg',
+                  height: 80,
+                  width: 80,
+                  semanticsLabel: 'plus',
                 ),
-              ),
-      ),
-
+                Column(
+                  children: [
+                    Text(
+                      'Сарнай',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'Дагагчтай',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'Пост нийтлэх',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icodegram/home_screeen.dart';
+import 'package:icodegram/screens/home_screeen.dart';
 import 'package:icodegram/icodegram.dart';
 
 class GramHome extends StatelessWidget {

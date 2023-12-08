@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icodegram/gramhome.dart';
-import 'package:icodegram/home_screeen.dart';
-import 'package:icodegram/screen_layout.dart';
+import 'package:icodegram/screens/home_screeen.dart';
+import 'package:icodegram/screens/screen_layout.dart';
 import 'package:icodegram/utils/auth_methods.dart';
 
 class IcodeGram extends StatelessWidget {
@@ -93,7 +93,7 @@ class IcodeGram extends StatelessWidget {
                       password: _passController.text);
                   if (result == 'success') {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ScreenLayout()));
+                        MaterialPageRoute(builder: (context) => LayoutScreen()));
                   }
                 },
                 child: Text(

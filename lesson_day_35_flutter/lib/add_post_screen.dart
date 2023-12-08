@@ -73,7 +73,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   void postImage(String uid, String username, String profImage) async {
     try {
-      String result = await FirestoreMethods().uploadPost(
+      String result = await FireStoreMethods().uploadPost(
           _descriptionController.text, _image!, uid, username, profImage);
       if (result == 'success') {
         showSnackBar(context, 'Post uploaded successfully');

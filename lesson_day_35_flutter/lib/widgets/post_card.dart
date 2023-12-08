@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lesson_day_35_flutter/utils.dart';
+
+import '../firestore_methods.dart';
 
 class PostCard extends StatefulWidget {
   final snap;
@@ -10,6 +14,39 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
+  int commentlen = 0;
+  bool isLikeAnimating = false;
+  @override
+  void initState() {
+    super.initState();
+    fetchCommentLen();
+  }
+
+  fetchCommentLen() async {
+    try {
+      QuerySnapshot snap = await FirebaseFirestore.instance
+          .collection('posts')
+          .doc(widget.snap['postId'])
+          .collection('comments')
+          .get();
+      commentlen = snap.docs.length;
+    } catch (err) {
+      showSnackBar(context, err.toString());
+    }
+    setState(() {});
+  }
+
+  deletePost(String postId) async {
+    try {
+      await FireStoreMethods().deletePost(postId);
+    } catch (err) {
+      showSnackBar(
+        context,
+        err.toString(),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,12 +57,12 @@ class _PostCardState extends State<PostCard> {
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16)
                 .copyWith(right: 0),
             child: Row(children: [
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 16,
-                backgroundImage: NetworkImage(
-                    'https://avatars.githubusercontent.com/u/13901376?v=4'),
+                backgroundImage:
+                    NetworkImage(widget.snap['profImage'].toString()),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Expanded(
@@ -56,6 +93,9 @@ class _PostCardState extends State<PostCard> {
                             children: ['Delete']
                                 .map((e) => InkWell(
                                       onTap: () {
+                                        deletePost(
+                                          widget.snap['postId'].toString(),
+                                        );
                                         Navigator.pop(context);
                                       },
                                       child: Container(

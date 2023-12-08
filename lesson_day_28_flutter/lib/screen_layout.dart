@@ -14,6 +14,7 @@ class ScreenLayout extends StatefulWidget {
 class _ScreenLayoutState extends State<ScreenLayout> {
   int _page = 0;
   late PageController pageController;
+
   @override
   void initState() {
     super.initState();
@@ -27,8 +28,8 @@ class _ScreenLayoutState extends State<ScreenLayout> {
   }
 
   @override
-  void navigationTapped(int age) {
-    pageController.jumpToPage(_page);
+  void navigationTapped(int page) {
+    pageController.jumpToPage(page);
   }
 
   void onPageChanged(int age) {

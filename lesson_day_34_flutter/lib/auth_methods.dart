@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:lesson_day_33_flutter/storage_methods.dart';
+import 'package:lesson_day_34_flutter/storage_methods.dart';
 import 'models/user.dart' as model;
 
 class AuthMethods {

@@ -2,9 +2,9 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lesson_day_33_flutter/firestore_methods.dart';
-import 'package:lesson_day_33_flutter/providers/user_provider.dart';
-import 'package:lesson_day_33_flutter/utils.dart';
+import 'package:lesson_day_34_flutter/firestore_methods.dart';
+import 'package:lesson_day_34_flutter/providers/user_provider.dart';
+import 'package:lesson_day_34_flutter/utils.dart';
 import 'package:provider/provider.dart';
 import 'models/user.dart';
 
@@ -91,14 +91,16 @@ class _AddPostScreenState extends State<AddPostScreen> {
     final User user = Provider.of<UserProvider>(context).getUser;
 
     return _image == null
-        ? Center(
-            child: IconButton(
-              icon: const Icon(Icons.add_a_photo),
-              onPressed: () {
-                _selectImage(context);
-              },
+        ? Scaffold(
+          body: Center(
+              child: IconButton(
+                icon: const Icon(Icons.add_a_photo),
+                onPressed: () {
+                  _selectImage(context);
+                },
+              ),
             ),
-          )
+        )
         : Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,

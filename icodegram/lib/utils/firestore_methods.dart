@@ -1,6 +1,9 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:icodegram/utils/storage_methods.dart';
+import 'package:uuid/uuid.dart';
+import '';
+import '../models/post.dart';
 
 class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -12,7 +15,7 @@ class FirestoreMethods {
     try {
       // upload post
       String photoUrl =
-      await StorageMethods().uploadImageToStorage('posts', image, true);
+          await StorageMethods().uploadImageToStorage('posts', image, true);
       Post post = Post(
           uid: uid,
           description: description,

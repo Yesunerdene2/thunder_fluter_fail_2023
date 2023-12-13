@@ -6,6 +6,7 @@ import 'package:icodegram/gramhome.dart';
 import 'package:icodegram/post_card.dart';
 import 'package:icodegram/providers/user_provider.dart';
 import 'package:icodegram/screens/screen_layout.dart';
+import 'package:icodegram/sign_up.dart';
 import 'package:provider/provider.dart';
 
 import 'icodegram.dart';
@@ -39,7 +40,7 @@ void main() async {
                 ),
               );
             }
-            return const PostCard();
+            return const SignUp();
           },
         )),
   ));

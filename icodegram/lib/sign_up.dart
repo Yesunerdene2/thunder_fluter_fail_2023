@@ -2,6 +2,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:icodegram/utils/auth_methods.dart';
+import 'gramhome.dart';
+import 'gramhome.dart';
 import 'text_input_field.dart';
 
 class SignUp extends StatefulWidget {

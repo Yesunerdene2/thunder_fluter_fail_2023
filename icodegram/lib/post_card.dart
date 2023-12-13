@@ -8,6 +8,8 @@ import 'package:icodegram/utils/firestore_methods.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import 'comment_screen.dart';
+
 class PostCard extends StatefulWidget {
   final snap;
 
@@ -53,7 +55,7 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
-    final User user = Provider.of<UserProvider>(context).getUser;
+    final User user = Provider.of<UserProvider>(context).getUser as User;
     return Container(
         color: Colors.white,
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -135,7 +137,7 @@ class _PostCardState extends State<PostCard> {
                   height: MediaQuery.of(context).size.height * 0.35,
                   width: double.infinity,
                   child: Image.network(
-                    width: snap['postUrl'].toString(),
+                    widget.snap['postUrl'].toString(),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -163,21 +165,23 @@ class _PostCardState extends State<PostCard> {
           Row(
             children: <Widget>[
               LikeAnimation(
+                isAnimating:
+                    ((widget.snap['likes'] ?? []) as List).contains(user.uid),
                 smallLike: true,
-                isAnimating: false,
                 child: IconButton(
-                  icon: true
-                      ? const Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        )
-                      : const Icon(
-                          Icons.favorite_border,
-                        ),
+                  icon:
+                      ((widget.snap['likes'] ?? []) as List).contains(user.uid)
+                          ? const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            )
+                          : const Icon(
+                              Icons.favorite_border,
+                            ),
                   onPressed: () => FirestoreMethods().likePost(
                     widget.snap['postId'].toString(),
                     user.uid,
-                    widget.snap['likes'],
+                    ((widget.snap['likes'] ?? []) as List),
                   ),
                 ),
               ),
@@ -193,17 +197,20 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
               ),
-              IconButton( icon: const Icon(Icons.send,
-              ),
-                onPressed: (){
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: IconButton(
-                      icon: const Icon(Icons.bookmark_border), onPressed: (){},
+              IconButton(
+                icon: const Icon(
+                  Icons.send,
+                ),
+                onPressed: () {
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        icon: const Icon(Icons.bookmark_border),
+                        onPressed: () {},
+                      ),
                     ),
-                  ),
-                );
+                  );
                 },
               ),
             ],
@@ -214,14 +221,19 @@ class _PostCardState extends State<PostCard> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                DefaultTextStyle(style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w800),
+                DefaultTextStyle(
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(fontWeight: FontWeight.w800),
                     child: Text(
-                      'likes',
+                      '${((widget.snap['likes'] ?? []) as List).length} likes',
                       style: Theme.of(context).textTheme.bodyMedium,
                     )),
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.only(top: 8,
+                  padding: const EdgeInsets.only(
+                    top: 8,
                   ),
                   child: RichText(
                     text: TextSpan(
@@ -251,14 +263,16 @@ class _PostCardState extends State<PostCard> {
                       ),
                     ),
                   ),
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CommentsScreen(
-                    postId: widget.snap['postId'].toString(),
-                  ))),
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CommentsScreen(
+                            postId: widget.snap['postId'].toString(),
+                          ))),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
-                    DateFormat.yMMMd().format(widget.snap['datePublished'].toDate()),
+                    DateFormat.yMMMd()
+                        .format(widget.snap['datePublished'].toDate()),
                     style: const TextStyle(
                       color: Colors.black,
                     ),
